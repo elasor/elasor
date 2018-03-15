@@ -24,10 +24,8 @@ public class ExampleUnitTest {
 
         for (boolean a1 : a) {
             for (boolean b1 : b) {
-                for (boolean c1 : c) {
-                    boolean d = a1 && (!b1 || !c1);
-                    System.out.println(a1 + "+" + b1 + "+" + c1 + " = " + d);
-                }
+                    boolean d = !a1 && !b1;
+                    System.out.println(a1 + "+" + b1 + " = " + d);
             }
         }
 

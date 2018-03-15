@@ -1,12 +1,30 @@
 package com.lify.elasor.message;
 
+import android.content.Context;
 import android.util.Log;
+
+import com.lify.elasor.Elasor;
 
 /**
  * @author Elasor
  */
 @SuppressWarnings("all")
 public class ElasorLog {
+
+    private static Context mContext;
+    private static boolean mIsReleaseLog;
+
+    private ElasorLog() {
+    }
+
+    public static void init(Context context) {
+        init(context, true);
+    }
+
+    public static void init(Context context, boolean isReleaseLog) {
+        mContext = context;
+        mIsReleaseLog = isReleaseLog;
+    }
 
     private static String getClassTag() {
         StackTraceElement[] trace = new Throwable().fillInStackTrace()
@@ -28,7 +46,10 @@ public class ElasorLog {
      * 错误
      * @param msg 信息
      */
-    public static void e(String msg){
+    public static void e(String msg) {
+        if(!mIsReleaseLog && !Elasor.isDebugMode(mContext)){
+            return;
+        }
         Log.e(getClassTag(), msg);
     }
 
@@ -36,7 +57,10 @@ public class ElasorLog {
      * 警告
      * @param msg 信息
      */
-    public static void w(String msg){
+    public static void w(String msg) {
+        if(!mIsReleaseLog && !Elasor.isDebugMode(mContext)){
+            return;
+        }
         Log.w(getClassTag(), msg);
     }
 
@@ -44,7 +68,10 @@ public class ElasorLog {
      * 信息
      * @param msg 信息
      */
-    public static void i(String msg){
+    public static void i(String msg) {
+        if(!mIsReleaseLog && !Elasor.isDebugMode(mContext)){
+            return;
+        }
         Log.i(getClassTag(), msg);
     }
 
@@ -52,7 +79,10 @@ public class ElasorLog {
      * debug
      * @param msg 信息
      */
-    public static void d(String msg){
+    public static void d(String msg) {
+        if(!mIsReleaseLog && !Elasor.isDebugMode(mContext)){
+            return;
+        }
         Log.d(getClassTag(), msg);
     }
 
@@ -60,7 +90,10 @@ public class ElasorLog {
      * verbose
      * @param msg 信息
      */
-    public static void v(String msg){
+    public static void v(String msg) {
+        if(!mIsReleaseLog && !Elasor.isDebugMode(mContext)){
+            return;
+        }
         Log.v(getClassTag(), msg);
     }
 
